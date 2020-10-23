@@ -14,6 +14,7 @@ const admin = require('firebase-admin');
     const db = admin.firestore();
     const author = github.context.payload.sender;
     const type = process.env.GITHUB_EVENT_NAME;
+    const dbt_state = process.env.DBT_RUN_STATE || 'no_dbt';
 
     const docRef = db.collection('usersGitHub').doc(author.id.toString());
     await docRef.set(
@@ -21,6 +22,7 @@ const admin = require('firebase-admin');
         author,
         id: author.id.toString(),
         [type]: admin.firestore.FieldValue.increment(1),
+        [dbt_state]: admin.firestore.FieldValue.increment(1),
       },
       { merge: true }
     );
