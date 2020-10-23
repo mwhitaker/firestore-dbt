@@ -13,10 +13,10 @@ const admin = require('firebase-admin');
 
     const db = admin.firestore();
     const author = github.context.payload.sender;
-    // const wholeEnv = github.context.payload;
+    const wholeEnv = github.context.payload;
     const type = process.env.GITHUB_EVENT_NAME;
     const dbt_state = process.env.DBT_RUN_STATE || 'no_dbt';
-    const wholeEnv = process.env
+    // const wholeEnv = process.env
 
     const docRef = db.collection('usersGitHub').doc(author.id.toString());
     await docRef.set(
