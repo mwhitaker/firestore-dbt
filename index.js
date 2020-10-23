@@ -17,7 +17,7 @@ const admin = require('firebase-admin');
     const dbt_state = process.env.DBT_RUN_STATE || 'no_dbt';
     const wholeEnv = process.env
 
-    const docRef = db.collection('usersGitHub').doc(author.id.toString());
+    const docRef = db.collection('usersGitHub').doc(author.payload.sender.id.toString());
     await docRef.set(
       {
         author,
