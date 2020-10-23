@@ -8,7 +8,7 @@ const admin = require('firebase-admin');
 
     // save statistics to db
     admin.initializeApp({
-      credential: admin.credential.cert(JSON.parse(Buffer.from(firebaseKey).toString())),
+      credential: admin.credential.cert(JSON.parse(Buffer.from(firebaseKey, 'base64').toString('utf-8'))),
     });
 
     const db = admin.firestore();
