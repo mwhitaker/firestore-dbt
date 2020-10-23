@@ -1,0 +1,9 @@
+name: 'Firestore interface'
+description: 'Firestore interface for dbt clients'
+inputs:
+  firebase-key:
+    description: 'Firebase key'
+    required: true
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
