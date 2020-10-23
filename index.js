@@ -12,16 +12,18 @@ const admin = require('firebase-admin');
     });
 
     const db = admin.firestore();
-    const author = github.context;
+    const author = github.context.payload.sender;
+    // const wholeEnv = github.context.payload;
     const type = process.env.GITHUB_EVENT_NAME;
     const dbt_state = process.env.DBT_RUN_STATE || 'no_dbt';
     const wholeEnv = process.env
 
-    const docRef = db.collection('usersGitHub').doc(author.payload.sender.id.toString());
+    const docRef = db.collection('usersGitHub').doc(author.id.toString());
     await docRef.set(
       {
         author,
         wholeEnv,
+        id: author.id.toString(),
         [type]: admin.firestore.FieldValue.increment(1),
         [dbt_state]: admin.firestore.FieldValue.increment(1),
       },
