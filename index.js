@@ -22,7 +22,6 @@ const admin = require('firebase-admin');
       {
         author,
         wholeEnv,
-        id: author.id.toString(),
         [type]: admin.firestore.FieldValue.increment(1),
         [dbt_state]: admin.firestore.FieldValue.increment(1),
       },
